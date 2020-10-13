@@ -36,6 +36,52 @@ const engineerPersonnel = [
     }
 
 ]
+
+const internPersonnel = [
+    {
+        message: "Please enter your name:",
+        name: "name"
+    }
+    ,
+    {
+        message: "Please enter your role:",
+        name: "role"
+    }
+    ,
+    {
+        message: "Please enter your ID:",
+        name: "id"
+    }
+    ,
+    {
+        message: "Please enter the name of your school:",
+        name: "school"
+    }
+
+]
+
+const managerPersonnel = [
+    {
+        message: "Please enter your name:",
+        name: "name"
+    }
+    ,
+    {
+        message: "Please enter your role:",
+        name: "role"
+    }
+    ,
+    {
+        message: "Please enter your ID:",
+        name: "id"
+    }
+    ,
+    {
+        message: "Please enter your office number:",
+        name: "officeNumber"
+    }
+
+]
 // User input
 // The project must prompt the user to build an engineering team. An engineering team consists of a manager, and any number of engineers and interns.
 // Roster output
