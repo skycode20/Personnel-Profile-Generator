@@ -82,18 +82,31 @@ const managerPersonnel = [
     }
 
 ]
-// User input
-// The project must prompt the user to build an engineering team. An engineering team consists of a manager, and any number of engineers and interns.
-// Roster output
-// The project must generate a team.html page in the output directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
-// Name
-// Role
-// ID
-// Role-specific property (School, link to GitHub profile, or office number)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+
+// function to write HTML file
+async function writeToFile(fileName, data) {
+    await writeAsync(fileName, data);
+}
+
+// function to initialize program
+function init() {
+    // Ask user questions about the project
+    inquirer.prompt(engineerPersonnel)
+        .then((answers) => {
+            const personnelHTML = renderEngineer(answers);
+            console.log(personnelHTML);
+            writeToFile(answers.role + ".html", personnelHTML);
+        })
+
+
+}
+
+// function call to initialize program
+init();
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
