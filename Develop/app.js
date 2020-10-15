@@ -87,9 +87,34 @@ const managerPersonnel = [
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
 
+// const WeatherAdmin = function() {
+//     this.getData = () => {
+//       fs.readFile("log.txt", "utf8", (error, data) => {
+//         console.log(data);
+//       });
+//     };
+  
+//     this.newEngineer = (name, location) => {
+//       const newUserSearch = new UserSearch(name, location);
+//       const logTxt =
+//         "\nName: " +
+//         newUserSearch.name +
+//         " Location: " +
+//         newUserSearch.location +
+//         " Date: " +
+//         moment(newUserSearch.date).format("MM-DD-YYYY");
+  
+//       fs.appendFile("log.txt", logTxt, err => {
+//         if (err) throw err;
+//       });
+  
+//       newUserSearch.getWeather();
+//     };
+//   };
+
 // function to write HTML file
-async function writeToFile(fileName, data) {
-    await writeAsync(fileName, data);
+async function writeHTML(fileName, data) {
+    await outputPath(fileName, data);
 }
 
 // function to initialize program
@@ -97,9 +122,9 @@ function init() {
     // Ask user questions about the project
     inquirer.prompt(engineerPersonnel)
         .then((answers) => {
-            const personnelHTML = renderEngineer(answers);
+            const personnelHTML = render(answers);
             console.log(personnelHTML);
-            writeToFile(answers.role + ".html", personnelHTML);
+            render(answers.role + ".html", personnelHTML);
         })
 
 
