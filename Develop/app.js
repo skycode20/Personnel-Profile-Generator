@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const personnelList = [];
+
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -83,6 +85,8 @@ const managerPersonnel = [
 
 ]
 
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -113,8 +117,14 @@ const managerPersonnel = [
 //   };
 
 // function to write HTML file
-async function writeHTML(fileName, data) {
-    await outputPath(fileName, data);
+function writeHTML(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        // throws an error, you could also catch it here
+        if (err) throw err;
+    
+        // success case, the file was saved
+        console.log('personnel saved');
+    });
 }
 
 // function to initialize program
@@ -122,9 +132,10 @@ function init() {
     // Ask user questions about the project
     inquirer.prompt(engineerPersonnel)
         .then((answers) => {
-            const personnelHTML = render(answers);
-            console.log(personnelHTML);
-            render(answers.role + ".html", personnelHTML);
+            // if () {}
+            engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            personnelList.push(engineerOne);
+            writeHTML(outputPath, render(personnelList));
         })
 
 
