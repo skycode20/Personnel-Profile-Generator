@@ -33,7 +33,12 @@ const engineerPersonnel = [
     }
     ,
     {
-        message: "Please enter your GitHub email:",
+        message: "Please enter your email:",
+        name: "email"
+    }
+    ,
+    {
+        message: "Please enter your GitHub username:",
         name: "github"
     }
 
@@ -53,6 +58,11 @@ const internPersonnel = [
     {
         message: "Please enter your ID:",
         name: "id"
+    }
+    ,
+    {
+        message: "Please enter your email:",
+        name: "email"
     }
     ,
     {
@@ -76,6 +86,11 @@ const managerPersonnel = [
     {
         message: "Please enter your ID:",
         name: "id"
+    }
+    ,
+    {
+        message: "Please enter your email:",
+        name: "email"
     }
     ,
     {
@@ -118,7 +133,7 @@ const managerPersonnel = [
 
 // function to write HTML file
 function writeHTML(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
+    fs.appendFile(fileName, data, (err) => {
         // throws an error, you could also catch it here
         if (err) throw err;
     
@@ -126,6 +141,11 @@ function writeHTML(fileName, data) {
         console.log('personnel saved');
     });
 }
+
+// fs.appendFile('empirestate.txt', '\nRight there up on Broadway', (err) => {
+//     if (err) throw err;
+//     console.log('The lyrics were updated!');
+// });
 
 // function to initialize program
 function init() {
