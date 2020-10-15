@@ -112,7 +112,7 @@ const managerPersonnel = [
 //         console.log(data);
 //       });
 //     };
-  
+
 //     this.newEngineer = (name, location) => {
 //       const newUserSearch = new UserSearch(name, location);
 //       const logTxt =
@@ -122,11 +122,11 @@ const managerPersonnel = [
 //         newUserSearch.location +
 //         " Date: " +
 //         moment(newUserSearch.date).format("MM-DD-YYYY");
-  
+
 //       fs.appendFile("log.txt", logTxt, err => {
 //         if (err) throw err;
 //       });
-  
+
 //       newUserSearch.getWeather();
 //     };
 //   };
@@ -136,25 +136,36 @@ function writeHTML(fileName, data) {
     fs.appendFile(fileName, data, (err) => {
         // throws an error, you could also catch it here
         if (err) throw err;
-    
+
         // success case, the file was saved
         console.log('personnel saved');
     });
 }
 
-// fs.appendFile('empirestate.txt', '\nRight there up on Broadway', (err) => {
-//     if (err) throw err;
-//     console.log('The lyrics were updated!');
-// });
-
 // function to initialize program
-function init() {
+async function init() {
     // Ask user questions about the project
-    inquirer.prompt(engineerPersonnel)
+    await inquirer.prompt(managerPersonnel)
+        .then((answers) => {
+            // if () {}
+            managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+            personnelList.push(managerOne);
+            writeHTML(outputPath, render(personnelList));
+        })
+
+    await inquirer.prompt(engineerPersonnel)
         .then((answers) => {
             // if () {}
             engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
             personnelList.push(engineerOne);
+            writeHTML(outputPath, render(personnelList));
+        })
+
+    await inquirer.prompt(internPersonnel)
+        .then((answers) => {
+            // if () {}
+            internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
+            personnelList.push(internOne);
             writeHTML(outputPath, render(personnelList));
         })
 
