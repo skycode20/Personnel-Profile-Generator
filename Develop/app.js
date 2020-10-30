@@ -162,6 +162,7 @@ async function enterEngineer() {
             engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
             personnelList.push(engineerOne);
             writeHTML(outputPath, render(personnelList));
+            init();
         })
 }
 
@@ -172,6 +173,7 @@ async function enterIntern() {
             internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
             personnelList.push(internOne);
             writeHTML(outputPath, render(personnelList));
+            init();
         })
 }
 
