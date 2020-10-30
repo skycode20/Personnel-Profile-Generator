@@ -9,7 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const { endianness } = require("os");
+const os = require("os");
 
 const personnelList = [];
 
@@ -21,11 +21,6 @@ const engineerPersonnel = [
     {
         message: "Please enter your name:",
         name: "name"
-    }
-    ,
-    {
-        message: "Please enter your role:",
-        name: "role"
     }
     ,
     {
@@ -52,11 +47,6 @@ const internPersonnel = [
     }
     ,
     {
-        message: "Please enter your role:",
-        name: "role"
-    }
-    ,
-    {
         message: "Please enter your ID:",
         name: "id"
     }
@@ -80,11 +70,6 @@ const managerPersonnel = [
     }
     ,
     {
-        message: "Please enter your role:",
-        name: "role"
-    }
-    ,
-    {
         message: "Please enter your ID:",
         name: "id"
     }
@@ -101,81 +86,82 @@ const managerPersonnel = [
 
 ]
 
-// function to write HTML file
-function writeHTML(fileName, data) {
-    fs.appendFile(fileName, data, (err) => {
-        // throws an error, you could also catch it here
-        if (err) throw err;
 
-        // success case, the file was saved
-        console.log('personnel saved');
-    });
-}
+        // function to write HTML file
+        function writeHTML(fileName, data) {
+            fs.appendFile(fileName, data, (err) => {
+                // throws an error, you could also catch it here
+                if (err) throw err;
 
-// function which prompts the user for what action they should take
-function init() {
-    inquirer
-        .prompt({
-            name: "personnelEntry",
-            type: "list",
-            message: "Which personnel would you like to enter?",
-            choices: ["MANAGER", "ENGINEER", "INTERN", "EXIT"]
-        })
-        .then(function (answer) {
-            // based on their answer, either call the bid or the post functions
-            if (answer.personnelEntry === "MANAGER") {
-                enterManager();
-            }
-            else if (answer.personnelEntry === "ENGINEER") {
-                enterEngineer();
-            }
-            else if (answer.personnelEntry === "INTERN") {
-                enterIntern();
-            }
-            else if (answer.personnelEntry === "EXIT") {
-                return;
-            }
-            else {
-                // end();
-                return;
-            }
-        });
-}
+                // success case, the file was saved
+                console.log('personnel saved');
+            });
+        }
 
-// function to initialize program
-async function enterManager() {
-    // Ask user questions about the project
-    await inquirer.prompt(managerPersonnel)
-        .then((answers) => {
+        // function which prompts the user for what action they should take
+        function init() {
+            inquirer
+                .prompt({
+                    name: "personnelEntry",
+                    type: "list",
+                    message: "Which personnel would you like to enter?",
+                    choices: ["MANAGER", "ENGINEER", "INTERN", "EXIT"]
+                })
+                .then(function (answer) {
+                    // based on their answer, either call the bid or the post functions
+                    if (answer.personnelEntry === "MANAGER") {
+                        enterManager();
+                    }
+                    else if (answer.personnelEntry === "ENGINEER") {
+                        enterEngineer();
+                    }
+                    else if (answer.personnelEntry === "INTERN") {
+                        enterIntern();
+                    }
+                    else if (answer.personnelEntry === "EXIT") {
+                        return;
+                    }
+                    else {
+                        // end();
+                        return;
+                    }
+                });
+        }
 
-            managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            personnelList.push(managerOne);
-            writeHTML(outputPath, render(personnelList));
-            init();
-        })
-}
+        // function to initialize program
+        async function enterManager() {
+            // Ask user questions about the project
+            await inquirer.prompt(managerPersonnel)
+                .then((answers) => {
 
-async function enterEngineer() {
-    await inquirer.prompt(engineerPersonnel)
-        .then((answers) => {
+                    managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+                    personnelList.push(managerOne);
+                    writeHTML(outputPath, render(personnelList));
+                    init();
+                })
+        }
 
-            engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
-            personnelList.push(engineerOne);
-            writeHTML(outputPath, render(personnelList));
-            init();
-        })
-}
+        async function enterEngineer() {
+            await inquirer.prompt(engineerPersonnel)
+                .then((answers) => {
 
-async function enterIntern() {
-    await inquirer.prompt(internPersonnel)
-        .then((answers) => {
+                    engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
+                    personnelList.push(engineerOne);
+                    writeHTML(outputPath, render(personnelList));
+                    init();
+                })
+        }
 
-            internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
-            personnelList.push(internOne);
-            writeHTML(outputPath, render(personnelList));
-            init();
-        })
-}
+        async function enterIntern() {
+            await inquirer.prompt(internPersonnel)
+                .then((answers) => {
+
+                    internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
+                    personnelList.push(internOne);
+                    writeHTML(outputPath, render(personnelList));
+                    init();
+                })
+        }
 
 
 
