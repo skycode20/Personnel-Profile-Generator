@@ -119,10 +119,10 @@ const managerPersonnel = [
                         enterIntern();
                     }
                     else if (answer.personnelEntry === "EXIT") {
+                        writeHTML(outputPath, render(personnelList));
                         return;
                     }
                     else {
-                        // end();
                         return;
                     }
                 });
@@ -136,7 +136,6 @@ const managerPersonnel = [
 
                     managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
                     personnelList.push(managerOne);
-                    writeHTML(outputPath, render(personnelList));
                     init();
                 })
         }
@@ -147,7 +146,6 @@ const managerPersonnel = [
 
                     engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
                     personnelList.push(engineerOne);
-                    writeHTML(outputPath, render(personnelList));
                     init();
                 })
         }
@@ -158,7 +156,6 @@ const managerPersonnel = [
 
                     internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
                     personnelList.push(internOne);
-                    writeHTML(outputPath, render(personnelList));
                     init();
                 })
         }
