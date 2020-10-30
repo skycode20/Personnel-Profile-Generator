@@ -1,0 +1,38 @@
+.maintextstyle {
+    color: blueviolet;
+}
+
+#profile-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.img-styles {
+    display: block;
+    margin: auto;
+    
+}
+
+.description-text {
+    margin: auto;
+}
+
+.centered {
+    text-align: center;
+    text-shadow: cadetblue 10px 15px 15px;
+    
+}
+
+.site-header {
+    font-family: 'Roboto Mono', monospace;
+    text-shadow: black 10px 10px 15px;
+    
+}
+
+.shadow-card {
+    
+    box-shadow: black 5px 5px 10px;
+    
+}
