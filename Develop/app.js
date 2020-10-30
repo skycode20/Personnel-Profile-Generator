@@ -100,37 +100,6 @@ const managerPersonnel = [
 
 ]
 
-
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// const WeatherAdmin = function() {
-//     this.getData = () => {
-//       fs.readFile("log.txt", "utf8", (error, data) => {
-//         console.log(data);
-//       });
-//     };
-
-//     this.newEngineer = (name, location) => {
-//       const newUserSearch = new UserSearch(name, location);
-//       const logTxt =
-//         "\nName: " +
-//         newUserSearch.name +
-//         " Location: " +
-//         newUserSearch.location +
-//         " Date: " +
-//         moment(newUserSearch.date).format("MM-DD-YYYY");
-
-//       fs.appendFile("log.txt", logTxt, err => {
-//         if (err) throw err;
-//       });
-
-//       newUserSearch.getWeather();
-//     };
-//   };
-
 // function to write HTML file
 function writeHTML(fileName, data) {
     fs.appendFile(fileName, data, (err) => {
@@ -142,35 +111,66 @@ function writeHTML(fileName, data) {
     });
 }
 
+// function which prompts the user for what action they should take
+function init() {
+    inquirer
+        .prompt({
+            name: "personnelEntry",
+            type: "list",
+            message: "Which personnel would you like to enter?",
+            choices: ["MANAGER", "ENGINEER", "INTERN"]
+        })
+        .then(function (answer) {
+            // based on their answer, either call the bid or the post functions
+            if (answer.personnelEntry === "MANAGER") {
+                enterManager();
+            }
+            else if (answer.personnelEntry === "ENGINEER") {
+                enterEngineer();
+            }
+            else if (answer.personnelEntry === "INTERN") {
+                enterIntern();
+            }
+            else {
+                // end();
+                return;
+            }
+        });
+}
+
 // function to initialize program
-async function init() {
+async function enterManager() {
     // Ask user questions about the project
     await inquirer.prompt(managerPersonnel)
         .then((answers) => {
-            // if () {}
+
             managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             personnelList.push(managerOne);
             writeHTML(outputPath, render(personnelList));
         })
+}
 
+async function enterEngineer() {
     await inquirer.prompt(engineerPersonnel)
         .then((answers) => {
-            // if () {}
+
             engineerOne = new Engineer(answers.name, answers.id, answers.email, answers.github);
             personnelList.push(engineerOne);
             writeHTML(outputPath, render(personnelList));
         })
+}
 
+async function enterIntern() {
     await inquirer.prompt(internPersonnel)
         .then((answers) => {
-            // if () {}
+
             internOne = new Intern(answers.name, answers.id, answers.email, answers.school);
             personnelList.push(internOne);
             writeHTML(outputPath, render(personnelList));
         })
-
-
 }
+
+
 
 // function call to initialize program
 init();
