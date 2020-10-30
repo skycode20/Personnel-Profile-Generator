@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { endianness } = require("os");
 
 const personnelList = [];
 
@@ -118,7 +119,7 @@ function init() {
             name: "personnelEntry",
             type: "list",
             message: "Which personnel would you like to enter?",
-            choices: ["MANAGER", "ENGINEER", "INTERN"]
+            choices: ["MANAGER", "ENGINEER", "INTERN", "EXIT"]
         })
         .then(function (answer) {
             // based on their answer, either call the bid or the post functions
@@ -130,6 +131,9 @@ function init() {
             }
             else if (answer.personnelEntry === "INTERN") {
                 enterIntern();
+            }
+            else if (answer.personnelEntry === "EXIT") {
+                return;
             }
             else {
                 // end();
@@ -147,6 +151,7 @@ async function enterManager() {
             managerOne = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             personnelList.push(managerOne);
             writeHTML(outputPath, render(personnelList));
+            init();
         })
 }
 
