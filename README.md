@@ -1,7 +1,7 @@
 # Personnel Profile Generator
 
   ![inquirer](https://img.shields.io/npm/l/inquirer)
-  ![Personnel Profile Generator](https://img.shields.io/github/languages/top/Personnel-Profile-Generator)
+  ![Personnel Profile Generator](https://img.shields.io/github/languages/top/skycode20/Personnel-Profile-Generator)
   [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
   - by *Skyler Rencher*
