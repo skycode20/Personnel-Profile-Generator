@@ -2,16 +2,15 @@
     color: blueviolet;
 }
 
-#profile-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.bottom-card {
+    background-color: mediumslateblue;
     
 }
 
-.img-styles {
-    display: block;
-    margin: auto;
+.title-style {
+    border-style: solid;
+    border-width: medium;
+    background-color: aquamarine;
     
 }
 
@@ -28,7 +27,13 @@
 
 .site-header {
     font-family: 'Roboto Mono', monospace;
-    text-shadow: black 10px 10px 15px;
+    /* text-shadow: whitesmoke 10px 10px 15px; */
+    background-color: mediumslateblue;
+    border-style: solid;
+    border-top: black;
+    border-left: black;
+    border-right: black;
+    border-width: medium;
     
 }
 
