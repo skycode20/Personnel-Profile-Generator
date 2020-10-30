@@ -48,5 +48,7 @@
   
   ## Links
 
-  * [Personnel Profile Generator Application](https://github.com/skycode20/Personnel-Profile-Generator)
+  * [Personnel Profile Generator Application](https://skycode20.github.io/Personnel-Profile-Generator/)
+
+  * [Personnel Profile Generator Repository](https://github.com/skycode20/Personnel-Profile-Generator)
 
