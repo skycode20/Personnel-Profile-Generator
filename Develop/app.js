@@ -15,8 +15,7 @@ const personnelList = [];
 
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+// Inquirer prompt object array that contains the questions
 const engineerPersonnel = [
     {
         message: "Please enter your name:",
@@ -98,7 +97,7 @@ const managerPersonnel = [
             });
         }
 
-        // function which prompts the user for what action they should take
+        // function which prompts the user to choose which personnel will be entered
         function init() {
             inquirer
                 .prompt({
@@ -108,7 +107,7 @@ const managerPersonnel = [
                     choices: ["MANAGER", "ENGINEER", "INTERN", "EXIT"]
                 })
                 .then(function (answer) {
-                    // based on their answer, either call the bid or the post functions
+                    // based on their answer, prompt user about chosen employee role or to exit prompts to save
                     if (answer.personnelEntry === "MANAGER") {
                         enterManager();
                     }
@@ -128,9 +127,9 @@ const managerPersonnel = [
                 });
         }
 
-        // function to initialize program
+        // Function to prompt user about Management Personnel
         async function enterManager() {
-            // Ask user questions about the project
+            
             await inquirer.prompt(managerPersonnel)
                 .then((answers) => {
 
@@ -140,6 +139,7 @@ const managerPersonnel = [
                 })
         }
 
+        // Function to prompt user about Engineer Personnel
         async function enterEngineer() {
             await inquirer.prompt(engineerPersonnel)
                 .then((answers) => {
@@ -150,6 +150,7 @@ const managerPersonnel = [
                 })
         }
 
+        // Function to prompt user about Intern Personnel
         async function enterIntern() {
             await inquirer.prompt(internPersonnel)
                 .then((answers) => {
@@ -164,19 +165,3 @@ const managerPersonnel = [
 
 // function call to initialize program
 init();
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
